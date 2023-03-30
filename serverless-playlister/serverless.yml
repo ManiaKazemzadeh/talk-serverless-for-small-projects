@@ -1,0 +1,19 @@
+service: serverless-playlister
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: eu-west-2
+
+plugins:
+  - serverless-python-requirements
+
+functions:
+  bbc-to-youtube-playlister:
+    handler: handler.run
+    events:
+      - httpApi:
+          path: /
+          method: post
+
