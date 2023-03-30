@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: python3.9
   region: eu-west-2
+  timeout: 600
 
 plugins:
   - serverless-python-requirements
@@ -16,4 +17,7 @@ functions:
       - httpApi:
           path: /
           method: post
-
+  rateHandler:
+    handler: handler.run
+    events:
+      - schedule: cron(15 3 ? * MON *)      # every Monday at 03:15 AM
